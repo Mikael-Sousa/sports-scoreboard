@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "Sports Scoreboard",
+    "slug": "sports-scoreboard",
+    "version": "1.0.0",
+    "orientation": "landscape",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "backgroundColor": "#0d1117"
+    },
+    "android": {
+      "package": "com.seuapp.sportsscoreboard",
+      "permissions": [
+        "BLUETOOTH",
+        "BLUETOOTH_ADMIN",
+        "BLUETOOTH_CONNECT",
+        "BLUETOOTH_SCAN",
+        "ACCESS_FINE_LOCATION"
+      ]
+    },
+    "plugins": [
+      [
+        "react-native-ble-plx",
+        {
+          "isBackgroundEnabled": false,
+          "modes": ["peripheral", "central"],
+          "bluetoothAlwaysPermission": "Precisa do Bluetooth para controlar o placar físico"
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 35,
+            "minSdkVersion": 23,
+            "targetSdkVersion": 35
+          }
+        }
+      ]
+    ]
+  }
+}
