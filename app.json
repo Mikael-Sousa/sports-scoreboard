@@ -15,7 +15,10 @@
         "BLUETOOTH_ADMIN",
         "BLUETOOTH_CONNECT",
         "BLUETOOTH_SCAN",
-        "ACCESS_FINE_LOCATION"
+        "ACCESS_FINE_LOCATION",
+        "android.permission.BLUETOOTH",
+        "android.permission.BLUETOOTH_ADMIN",
+        "android.permission.BLUETOOTH_CONNECT"
       ]
     },
     "plugins": [
@@ -23,7 +26,10 @@
         "react-native-ble-plx",
         {
           "isBackgroundEnabled": false,
-          "modes": ["peripheral", "central"],
+          "modes": [
+            "peripheral",
+            "central"
+          ],
           "bluetoothAlwaysPermission": "Precisa do Bluetooth para controlar o placar físico"
         }
       ],
@@ -32,11 +38,16 @@
         {
           "android": {
             "compileSdkVersion": 35,
-            "minSdkVersion": 23,
+            "minSdkVersion": 24,
             "targetSdkVersion": 35
           }
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "0d121e5f-33ee-4720-b167-e94c3d23b97a"
+      }
+    }
   }
 }

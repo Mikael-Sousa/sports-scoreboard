@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, useWindowDimensions } from 'react-native';
 import { COLORS } from '../../constants/colors';
 
 interface ScoreCardProps {
@@ -17,35 +17,44 @@ export function ScoreCard({
   onIncrease,
   onDecrease,
   onReset,
-  disabled = false,
+  disabled,
 }: ScoreCardProps) {
+  const { width } = useWindowDimensions();
+
+  const isSmall = width < 360;
+
   return (
-    <View style={styles.card}>
-      <Text style={styles.teamName}>{teamName}</Text>
-      <Text style={styles.score}>{score}</Text>
+    <View style={[styles.card, isSmall && styles.cardSmall]}>
+      <Text style={[styles.teamName, isSmall && styles.teamNameSmall]}>
+        {teamName}
+      </Text>
+
+      <Text style={[styles.score, isSmall && styles.scoreSmall]}>
+        {score}
+      </Text>
+
       <View style={styles.controls}>
         <TouchableOpacity
           style={[styles.btn, styles.btnDecrease, disabled && styles.disabled]}
           onPress={onDecrease}
           disabled={disabled}
-          activeOpacity={0.7}
         >
           <Text style={styles.btnText}>－</Text>
         </TouchableOpacity>
+
         <TouchableOpacity
           style={[styles.btn, styles.btnIncrease, disabled && styles.disabled]}
           onPress={onIncrease}
           disabled={disabled}
-          activeOpacity={0.7}
         >
           <Text style={styles.btnText}>＋</Text>
         </TouchableOpacity>
       </View>
+
       <TouchableOpacity
         style={[styles.resetBtn, disabled && styles.disabled]}
         onPress={onReset}
         disabled={disabled}
-        activeOpacity={0.7}
       >
         <Text style={styles.resetText}>Reset</Text>
       </TouchableOpacity>
@@ -58,12 +67,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: COLORS.surface,
     borderRadius: 20,
-    padding: 24,
-    minWidth: 180,
+    padding: 20,
+    width: '100%',
+    maxWidth: 220,
     borderWidth: 1,
     borderColor: COLORS.border,
-    gap: 12,
+    gap: 10,
+    zIndex: 10,
   },
+
+  cardSmall: {
+    padding: 14,
+    maxWidth: 180,
+  },
+
   teamName: {
     color: COLORS.textSecondary,
     fontSize: 14,
@@ -71,35 +88,68 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     letterSpacing: 1.5,
   },
+
+  teamNameSmall: {
+    fontSize: 12,
+  },
+
   score: {
     color: COLORS.score,
-    fontSize: 96,
+    fontSize: 72, // menor que 96
     fontWeight: '700',
     fontVariant: ['tabular-nums'],
-    lineHeight: 112,
+    lineHeight: 80,
   },
+
+  scoreSmall: {
+    fontSize: 56,
+    lineHeight: 64,
+  },
+
   controls: {
     flexDirection: 'row',
     gap: 12,
   },
+
   btn: {
-    width: 52,
-    height: 52,
+    width: 48,
+    height: 48,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  btnIncrease: { backgroundColor: COLORS.primary },
-  btnDecrease: { backgroundColor: COLORS.surfaceAlt, borderWidth: 1, borderColor: COLORS.border },
-  btnText: { color: COLORS.textPrimary, fontSize: 22, fontWeight: '600' },
+
+  btnIncrease: {
+    backgroundColor: COLORS.primary,
+  },
+
+  btnDecrease: {
+    backgroundColor: COLORS.surfaceAlt,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+  },
+
+  btnText: {
+    color: COLORS.textPrimary,
+    fontSize: 20,
+    fontWeight: '600',
+  },
+
   resetBtn: {
     paddingVertical: 8,
-    paddingHorizontal: 20,
+    paddingHorizontal: 18,
     borderRadius: 8,
     backgroundColor: COLORS.surfaceAlt,
     borderWidth: 1,
     borderColor: COLORS.border,
   },
-  resetText: { color: COLORS.textSecondary, fontSize: 13 },
-  disabled: { opacity: 0.35 },
+
+  resetText: {
+    color: COLORS.textSecondary,
+    fontSize: 13,
+  },
+
+  disabled: {
+    opacity: 0.35,
+  },
 });

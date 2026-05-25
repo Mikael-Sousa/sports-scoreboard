@@ -5,16 +5,16 @@ import { router } from 'expo-router';
 import { Button } from '../../components/Button';
 import { COLORS } from '../../constants/colors';
 import { Footer } from '@/components/Footer';
+import { useBluetooth } from '../../hooks/useBluetooth';
 
 export function HomeScreen() {
+  const { status, error, scan } = useBluetooth();
+  const isConnected = status === 'connected';
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>
         Sports Scoreboard
-      </Text>
-
-      <Text style={styles.subtitle}>
-        Controle o placar físico via Bluetooth
       </Text>
 
       <View style={styles.actions}>
@@ -24,6 +24,11 @@ export function HomeScreen() {
           variant="ghost"
         />
       </View>
+
+      <Text style={styles.statusText}>
+        {error ?? (isConnected ? 'HC-06 conectado' : 'Bluetooth não conectado')}
+      </Text>
+
       <Footer />
     </View>
   );
@@ -41,4 +46,10 @@ const styles = StyleSheet.create({
   title: { color: COLORS.textPrimary, fontSize: 28, fontWeight: '700' },
   subtitle: { color: COLORS.textSecondary, fontSize: 15, marginBottom: 8 },
   actions: { gap: 12, alignItems: 'center' },
+  statusText: {
+    color: COLORS.textSecondary,
+    fontSize: 14,
+    textAlign: 'center',
+    marginTop: 8,
+  },
 });
