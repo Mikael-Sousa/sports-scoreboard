@@ -52,7 +52,7 @@ export function ScoreboardScreen({ onGoHome, onGoSettings }: ScoreboardScreenPro
           onIncrease={increase1}
           onDecrease={decrease1}
           onReset={reset1}
-          disabled={false}
+          disabled={!isConnected}
         />
 
         <View style={styles.center}>
