@@ -18,6 +18,14 @@
         "ACCESS_FINE_LOCATION",
         "android.permission.BLUETOOTH",
         "android.permission.BLUETOOTH_ADMIN",
+        "android.permission.BLUETOOTH_CONNECT",
+        "BLUETOOTH",
+        "BLUETOOTH_ADMIN",
+        "BLUETOOTH_CONNECT",
+        "BLUETOOTH_SCAN",
+        "ACCESS_FINE_LOCATION",
+        "android.permission.BLUETOOTH",
+        "android.permission.BLUETOOTH_ADMIN",
         "android.permission.BLUETOOTH_CONNECT"
       ]
     },
@@ -48,6 +56,13 @@
       "eas": {
         "projectId": "0d121e5f-33ee-4720-b167-e94c3d23b97a"
       }
-    }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/0d121e5f-33ee-4720-b167-e94c3d23b97a"
+    },
+    "ios": {}
   }
 }
