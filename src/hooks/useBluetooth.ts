@@ -16,7 +16,7 @@ export function useBluetooth() {
   const [device, setDevice] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
 
-  async function pedirPermissoesBluetooth() {
+  async function requestBluetoothPermissions() {
     if (Platform.OS !== 'android') return true;
 
     if (Platform.Version >= 31) {
@@ -42,7 +42,7 @@ export function useBluetooth() {
   useEffect(() => {
     const connect = async () => {
       try {
-        const permissoes = await pedirPermissoesBluetooth();
+        const permissoes = await requestBluetoothPermissions();
 
         if (!permissoes) {
           setError('Permissões Bluetooth negadas');
@@ -92,7 +92,7 @@ export function useBluetooth() {
 
   const scan = useCallback(async () => {
     try {
-      const permissoes = await pedirPermissoesBluetooth();
+      const permissoes = await requestBluetoothPermissions();
 
       if (!permissoes) {
         setError('Permissões Bluetooth negadas');

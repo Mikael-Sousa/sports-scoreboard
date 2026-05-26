@@ -52,7 +52,7 @@ export function ScoreboardScreen({ onGoHome, onGoSettings }: ScoreboardScreenPro
           onIncrease={increase1}
           onDecrease={decrease1}
           onReset={reset1}
-          disabled={!isConnected}
+          disabled={false}
         />
 
         <View style={styles.center}>
@@ -60,7 +60,7 @@ export function ScoreboardScreen({ onGoHome, onGoSettings }: ScoreboardScreenPro
           <TouchableOpacity
             style={[styles.resetAllBtn, !isConnected && styles.disabled]}
             onPress={handleResetBoth}
-            disabled={!isConnected}
+            disabled={false}
             activeOpacity={0.7}
           >
             <Text style={styles.resetAllText}>Zerar tudo</Text>
