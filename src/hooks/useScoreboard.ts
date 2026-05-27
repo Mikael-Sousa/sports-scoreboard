@@ -17,7 +17,7 @@ export function useScoreboard() {
 
   const decrease1 = useCallback(async () => {
     await send(COMMANDS.DECREASE_1);
-    setScore1(score1 === 0 ? 99 : score1 - 1);
+    setScore1(score1 === 0 ? 0 : score1 - 1);
   }, [score1, send]);
 
   const reset1 = useCallback(async () => {
@@ -32,7 +32,7 @@ export function useScoreboard() {
 
   const decrease2 = useCallback(async () => {
     await send(COMMANDS.DECREASE_2);
-    setScore2(score2 === 0 ? 99 : score2 - 1);
+    setScore2(score2 === 0 ? 0 : score2 - 1);
   }, [score2, send]);
 
   const reset2 = useCallback(async () => {
